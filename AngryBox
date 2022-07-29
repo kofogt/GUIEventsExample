@@ -1,0 +1,54 @@
+package com.example.demo;
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import javax.swing.*;
+
+
+public class HelloApplication extends Application {
+    @Override
+     public void start(Stage stage) throws Exception {
+
+        Group root = new Group();
+        Scene scene = new Scene(root, 600,600,Color.BLACK);
+        stage = new Stage();
+
+        stage.setTitle("Kofo's program");
+        Text text = new Text();
+        text.setText("Don' touch me :p");
+        text.setX(120);
+        text.setY(250);
+        text.setFill(Color.WHITE);
+        text.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 30));
+        JButton button = new JButton("Click me");
+        stage.setScene(scene);
+//        stage.setFullScreen(true);
+//        stage.setFullScreenExitHint("Kofo is the cutest, type 'q' to accept");
+//        stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("q"));
+
+        root.setOnMouseClicked(event -> {
+            text.setText("Don't drag across me :/");
+        });
+        root.setOnDragDetected(event -> {
+            text.setText("I'm reporting you ");
+        });
+        root.setOnMouseEntered(event -> {
+            text.setText("Don't click on me >:-(");
+        });
+        root.getChildren().add(text);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
